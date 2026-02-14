@@ -1,4 +1,4 @@
-//! Array 
+/* //! Array 
 //? Array is a data structure that can hold multiple values at once.
 //? It is a collection of items stored at contiguous memory locations.
 //? The idea is to store multiple items of the same type together.
@@ -7,9 +7,11 @@
 //? Creating an Array
 //? We can create an array using the Array constructor or using the array literal syntax.
 //? Using Array constructor
-let arr1 = new Array();
+
+// let arr1 = new Array();
+
 //? Using array literal syntax
-let arr2 = [];
+// let arr2 = [];
 
 //? Adding elements to an Array
 //? We can add elements to an array using the push() method or by directly assigning values to specific indices.
@@ -84,7 +86,61 @@ arr1.sort();
 console.log(arr1); // Output: [0, 2]
 
 
+ */
 
+
+
+//!Q .
+
+
+//? 1. Create an array with 3 fruits and print the second fruit.
+ let fruits = ['Apple', 'Banana', 'Cherry'];
+/*
+
+console.log(fruits[1]); */
+
+
+
+
+/* //? 2. Add "mango" at the end of and "grapes" at the beginning of the fruits array and print the updated array.
+
+fruits.push('Mango'); // Adds 'Mango' to the end of the fruits array
+fruits.unshift('Grapes'); // Adds 'Grapes' to the beginning of the fruits array
+console.log(fruits); */
+
+ //? 3. Replace the Banana with "Kiwi" and print the updated array.
+
+/* fruits[1] = 'Kiwi'; // Replaces 'Banana' with 'Kiwi' at index 2
+console.log(fruits); // Output: ['Grapes', 'Apple', 'Kiwi', 'Cherry', 'Mango']
+
+ */
+
+//! What's the difference between push() and unshift() methods in JavaScript arrays?
+
+/* The push() method adds one or more elements to the end of an array and returns the new length of the array. 
+The unshift() method adds one or more elements to the beginning of an array and also returns the new length of the array. */
+
+
+
+
+//? 4. Remove the Last fruit from the fruits array and print the updated array.
+
+
+/* fruits.pop(); // Removes the last element from the fruits array
+console.log(fruits); // Output: ['Grapes', 'Apple', 'Kiwi', 'Cherry'] */
+
+//? 5. Remove the first fruit from the fruits array and print the updated array.
+
+/* fruits.shift(); // Removes the first element from the fruits array
+console.log(fruits); // Output: ['Apple', 'Kiwi', 'Cherry'] */
+
+
+//? Insert "Orange" at index 1 in the fruits array and print the updated array.
+/* 
+fruits.splice(1, 0, 'Orange'); // Inserts 'Orange' at index 2 without removing any elements
+console.log(fruits); // Output: ['Apple', 'Orange', 'Kiwi', 'Cherry'] 
+
+ */
 
 
 
