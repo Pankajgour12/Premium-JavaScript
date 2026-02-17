@@ -9,3 +9,7 @@ let obj1 = new Object();
 
 //? Using object literal syntax
 let obj2 = {};  
+
+
+
+  
