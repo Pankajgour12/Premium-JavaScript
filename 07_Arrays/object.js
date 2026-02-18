@@ -134,7 +134,7 @@ console.log(obj?.address?.city); // Output: undefined (since address is not defi
  */
 
 
-
+/* 
 let obj ={
     name: "Pankaj",
     age: 24,
@@ -150,4 +150,17 @@ let obj ={
 }
 
 console.log(obj?.address?.city); // Output: "bhopal" (since address and city are defined in the object)
-console.log(obj?.addresses?.city); // Output: undefined (since country is not defined in the address object)
+console.log(obj?.addresses?.city); // Output: undefined (since country is not defined in the address object) */
+
+
+// computed property 
+
+let role = "Admin"
+let obj ={
+    name: "Pankaj",
+    age: 24,
+    email: "pankaj@123",
+    [role]: 'pankaj' // Computed property name using the value of the admin variable
+}
+
+console.log(obj);
