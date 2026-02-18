@@ -39,7 +39,7 @@ let obj = {
     // object keys 
 
 
-
+/* 
     let obj = {
     name: "Pankaj",
     age: 24,
@@ -47,12 +47,22 @@ let obj = {
     email: "pankaj@123"
     }
 
-
+    // object keys
     let keys = Object.keys(obj)
 
-    console.log(keys);
+    console.log("keys",keys);
 
     // object values
     let values = Object.values(obj)
 
-    console.log(values);
+    console.log("values", values);
+
+//    object entries
+
+    let entries = Object.entries(obj)
+
+    console.log("entries", entries); */
+
+
+
+    
