@@ -26,15 +26,33 @@ console.log(values);
 
 let entries = Object.entries(obj);
 console.log(entries); */
-
+/* 
 
 let obj = {
     name: "Pankaj",
     age: 24,
     city: "bhopal",
     isMarried: false,
-}
+} */
 
-for(let key in obj){
-    console.log(key + ": " + obj[key]);
-}
+
+    // object keys 
+
+
+
+    let obj = {
+    name: "Pankaj",
+    age: 24,
+    city: "bhopal",
+    email: "pankaj@123"
+    }
+
+
+    let keys = Object.keys(obj)
+
+    console.log(keys);
+
+    // object values
+    let values = Object.values(obj)
+
+    console.log(values);
