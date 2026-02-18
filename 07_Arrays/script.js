@@ -139,7 +139,6 @@ console.log(fruits); // Output: ['Apple', 'Kiwi', 'Cherry'] */
 /* 
 fruits.splice(1, 0, 'Orange'); // Inserts 'Orange' at index 2 without removing any elements
 console.log(fruits); // Output: ['Apple', 'Orange', 'Kiwi', 'Cherry'] 
-
- */
+*/ 
 
 
