@@ -99,7 +99,8 @@ console.log("obj3", obj3); */
 
 // deep clone
 
-let obj1 = {
+/* let obj1 = {
+
     name: "Pankaj",
     age: 24,
     address: {
@@ -113,4 +114,40 @@ let obj2 = JSON.parse(JSON.stringify(obj1))// JSON.stringify() converts the obje
 obj2.address.city = "indore"
 
 console.log("obj1", obj1);
-console.log("obj2", obj2);
+console.log("obj2", obj2); */
+
+
+// optional chaining
+
+//ex.1
+/* 
+let obj ={
+    name: "Pankaj",
+    age: 24,
+    city: "bhopal",
+    email: "pankaj@123"
+    
+}
+
+console.log(obj?.name); // Output: "Pankaj"
+console.log(obj?.address?.city); // Output: undefined (since address is not defined in the object)
+ */
+
+
+
+let obj ={
+    name: "Pankaj",
+    age: 24,
+    
+    email: "pankaj@123",
+    address:{
+        city: "bhopal",
+        state: "MP"
+    
+
+    }
+    
+}
+
+console.log(obj?.address?.city); // Output: "bhopal" (since address and city are defined in the object)
+console.log(obj?.addresses?.city); // Output: undefined (since country is not defined in the address object)
