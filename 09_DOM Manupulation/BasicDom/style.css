@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+div{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border: 5px solid blue;
+    scale: 0.5;
+    transition: all linear 0.5s;
+}
