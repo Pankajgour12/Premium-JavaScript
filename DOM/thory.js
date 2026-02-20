@@ -31,4 +31,7 @@ Example:
 
 `;
 
-//!  
+// !  what does getElementByClassName return? Ia it an array?
+
+let cl = document.getElementsByClassName("color");
+console.log(cl);
