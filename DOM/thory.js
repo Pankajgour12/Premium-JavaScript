@@ -56,7 +56,7 @@ for(let i=0; i<list.length;i++){
 
  
     //! What's the different between innerText,textContent, and innerHTML ?
-  `✅ 1. innerText
+  let a = `✅ 1. innerText
 
     👉 Sirf visible text deta hai (jo screen par dikh raha hai).
        CSS display:none ya hidden text ignore karta hai.
@@ -74,11 +74,16 @@ for(let i=0; i<list.length;i++){
 👉 HTML structure + text dono deta hai.
     Tags bhi milte hain.
     HTML insert bhi kar sakte ho.
-`
-`
+
 //! When should you use textContent instead of innerText ?
 👉 “textContent is preferred when we need fast access to an element’s raw text because it does not consider CSS styling or layout calculations. It includes hidden text and performs better than innerText in large DOM operations. Unlike innerText, it does not trigger reflow, making it more efficient. It is also safer when inserting user input because it prevents HTML execution.”
 
 `
+
+//! Select a paragraph and replace its content with:
+{/* <b>Updated </b> by JavaScript */}
+
+let p = document.querySelector("p").innerHTML="<b>Updated </b>  by JavaScript"
+
 
 
