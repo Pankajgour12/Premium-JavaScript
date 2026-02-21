@@ -38,3 +38,47 @@ Example:
 console.log(cl); */
 
 //* its return becomes HTML COLLECTION NOT and array 
+
+
+
+//! Select all <li> element and print their text using a loop.
+
+ let list = document.querySelectorAll("li");
+/*
+for(let i=0; i<list.length;i++){
+    console.log(list[i].innerText);
+}
+ */
+
+/* list.forEach((val)=>{
+    console.log(val.innerText);
+}) */
+
+ 
+    //! What's the different between innerText,textContent, and innerHTML ?
+  `✅ 1. innerText
+
+    👉 Sirf visible text deta hai (jo screen par dikh raha hai).
+       CSS display:none ya hidden text ignore karta hai.
+       Layout calculate karta hai → thoda slow hota hai.
+
+
+       ✅ 2. textContent
+
+👉 Pure element ka text deta hai (visible + hidden sab).
+        CSS ko ignore karta hai.
+        Fast hota hai.
+        HTML tags remove karke sirf text deta hai.
+
+✅ 3. innerHTML
+👉 HTML structure + text dono deta hai.
+    Tags bhi milte hain.
+    HTML insert bhi kar sakte ho.
+`
+`
+//! When should you use textContent instead of innerText ?
+👉 “textContent is preferred when we need fast access to an element’s raw text because it does not consider CSS styling or layout calculations. It includes hidden text and performs better than innerText in large DOM operations. Unlike innerText, it does not trigger reflow, making it more efficient. It is also safer when inserting user input because it prevents HTML execution.”
+
+`
+
+
