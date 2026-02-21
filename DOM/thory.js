@@ -86,4 +86,6 @@ for(let i=0; i<list.length;i++){
 let p = document.querySelector("p").innerHTML="<b>Updated </b>  by JavaScript"
 
 
+// add a title attribute to a div dynamically.
+
 
