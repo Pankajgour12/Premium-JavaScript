@@ -33,5 +33,8 @@ Example:
 
 // !  what does getElementByClassName return? Ia it an array?
 
-let cl = document.getElementsByClassName("color");
-console.log(cl);
+/* let cl = document.getElementsByClassName('color')
+
+console.log(cl); */
+
+//* its return becomes HTML COLLECTION NOT and array 
