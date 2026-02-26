@@ -1,4 +1,4 @@
-//! What is the DOM? How does it represent the HTML structure?
+0i//! What is the DOM? How does it represent the HTML structure?
 //*: The DOM (Document Object Model) is a tree-like object representation of an HTML document created by the browser. Each HTML element becomes a node in the DOM tree, allowing JavaScript to access and manipulate the structure, content, and styles dynamically
 
 //! Name the types of nodes in the DOM tree.
@@ -89,3 +89,4 @@ let p = document.querySelector("p").innerHTML="<b>Updated </b>  by JavaScript"
 // add a title attribute to a div dynamically.
 
 
+add this is basic questions in the main
