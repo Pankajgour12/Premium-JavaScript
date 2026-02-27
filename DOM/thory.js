@@ -89,4 +89,6 @@ let p = document.querySelector("p").innerHTML="<b>Updated </b>  by JavaScript"
 // add a title attribute to a div dynamically.
 
 
-add this is basic questions in the main
+
+they
+this is basic questions in the main
