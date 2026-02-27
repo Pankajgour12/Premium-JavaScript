@@ -11,6 +11,7 @@ h1.innerHTML = `<i>I'm Pankaj Gour</i> `
 let h2 = document.createElement("h2")
 h2.innerHTML = "Web Developer"
 document.body.append(h2)
+
  */
 
 
