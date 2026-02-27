@@ -11,6 +11,7 @@ const interviewQuestions = [
     "What is the Document Object Model (DOM)?"
 ];
 
+
 function getRandomQuestion() {
     const randomIndex = Math.floor(Math.random() * interviewQuestions.length);
     return interviewQuestions[randomIndex];
