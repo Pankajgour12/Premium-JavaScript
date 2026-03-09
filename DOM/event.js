@@ -1,7 +1,8 @@
+//? select the element first 
+
+// syntax
+
+/* Element.addEventListener("event name", function(){
 
 
-let h1 = document.querySelector("h1")
-h1.addEventListener("click",()=>{
-    h1.style.color = "red"
-    h1.textContent= "this is the end "
-})
+}) */
