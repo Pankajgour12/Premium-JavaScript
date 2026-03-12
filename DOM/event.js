@@ -51,22 +51,11 @@ inp.addEventListener("change",(data)=>{
 }) */
 
 
-const form = document.querySelector("form")
+const red = document.querySelector(".red")
 
-form.addEventListener("submit",(e)=>{
-    e.preventDefault();
-
-    let card = document.querySelector(".card")
-    let profile = document.querySelector(".profile")
-
-    
-    
-    card.appendChild(profile)
-    
-
+window.addEventListener("mousemove", (e) => {
+  red.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`
 })
-
-
 
 
 
