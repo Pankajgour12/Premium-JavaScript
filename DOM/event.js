@@ -30,7 +30,7 @@ window.addEventListener("keydown",(data)=>{
 
     // file upload function 
 
-let inp = document.querySelector("#inp") 
+/* let inp = document.querySelector("#inp") 
 let btn = document.querySelector("#btn")
 
 btn.addEventListener("click",()=>{
@@ -48,8 +48,23 @@ inp.addEventListener("change",(data)=>{
   
    
 
-})
+}) */
 
+
+const form = document.querySelector("form")
+
+form.addEventListener("submit",(e)=>{
+    e.preventDefault();
+
+    let card = document.querySelector(".card")
+    let profile = document.querySelector(".profile")
+
+    
+    
+    card.appendChild(profile)
+    
+
+})
 
 
 
