@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="min-h-screen p-1 relative flex items-center  justify-center bg-black/10 overflow-hidden ">
-    <form class="flex  flex-col  gap-5">
-        <input id="name" type="text" class="border-1 border-red-500 rounded-sm px-2" placeholder="enter your name">
-        <small class="hide hidden">your name should be greater than 2 character</small>
 
+<div class="form-container">
+    <form class="form">
 
-        <input type="email" class="border-1 border-red-500 rounded-sm px-2" placeholder="your email">
+        <h2>Login</h2>
 
-        <input type="password" placeholder="Enter password" class="border-1 border-red-500 rounded-sm px-2" >
+        <div class="input-group">
+            <label>Email</label>
+            <input type="text" id="email" placeholder="Enter your email">
+           <small id="emailError"></small>
 
-        <select  id="">
-            <option value="male">male   </option>
-            <option value="female">female   </option>
-            <option value="other">other</option>
-        </select>
+        </div>
 
-        <textarea class="border-1 border-red-500 rounded-sm px-2">
-            what about us 
-        </textarea>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+            <small id="passwordError"></small>
+        </div>
 
-    <button>submit</button>
-
+        <button type="submit">Login</button>
 
     </form>
-   
 </div>
-
  
-
-
-
-<script src="event.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

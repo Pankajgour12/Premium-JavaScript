@@ -1,20 +1,29 @@
-/* 
-let h1 = document.querySelector("h1")
-let a = document.querySelector("a")
+let form = document.querySelector("form")
+let email = document.querySelector("#email")
+let password = document.querySelector("#password")
 
-console.dir(h1)
-h1.innerHTML = `<i>I'm Pankaj Gour</i> `
+let emailError = document.querySelector("#emailError")
+let passError = document.querySelector("#passwordError")
 
+form.addEventListener('submit',(e)=>{
 
-// create element 
-// append/ prepend karo jaha bhi element chahiye waha 
-let h2 = document.createElement("h2")
-h2.innerHTML = "Web Developer"
-document.body.append(h2)
- */
+    e.preventDefault();
 
+    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+    let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
+    let emailans = emailRegex.test(email.value);
+    let passans  = passwordRegex.test(password.value);
 
+    emailError.textContent = ""
+    passError.textContent = ""
 
+    if(!emailans){
+        emailError.textContent = "pls fill valid email"
+    }
 
+    if(!passans){
+        passError.textContent = "pls fill valid password"
+    }
 
+})
