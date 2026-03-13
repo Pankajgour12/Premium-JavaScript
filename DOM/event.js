@@ -51,12 +51,12 @@ inp.addEventListener("change",(data)=>{
 }) */
 
 
-const red = document.querySelector(".red")
+/* const red = document.querySelector(".red")
 
 window.addEventListener("mousemove", (e) => {
   red.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`
 })
-
+ */
 
 
 // jispe event agar upsapra listenr nhi hu to
@@ -64,6 +64,34 @@ window.addEventListener("mousemove", (e) => {
 
 
 //form validation 
+
+
+let form = document.querySelector("form")
+let nm = document.querySelector("#name")
+let hide = document.querySelector(".hide")
+
+
+
+form.addEventListener("submit",(dets)=>{
+    dets.preventDefault()
+    
+    if(nm.value.length <= 2){
+        hide.style.color = "red";
+        hide.classList = "visible"
+
+    }else{
+        
+        hide.classList = "hidden"
+    
+        
+    }
+    
+
+    
+
+
+
+})
 
 
 

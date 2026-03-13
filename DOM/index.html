@@ -7,13 +7,31 @@
    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
-<div class="min-h-screen p-1 relative overflow-hidden bg-black text-white">
-    <div class="red absolute  rounded-full bg-transparent">
+<div class="min-h-screen p-1 relative flex items-center  justify-center bg-black/10 overflow-hidden ">
+    <form class="flex  flex-col  gap-5">
+        <input id="name" type="text" class="border-1 border-red-500 rounded-sm px-2" placeholder="enter your name">
+        <small class="hide hidden">your name should be greater than 2 character</small>
 
-        <div class="h-16 w-16 flex justify-center items-center   ">🦮 </div>
 
-    </div>
+        <input type="email" class="border-1 border-red-500 rounded-sm px-2" placeholder="your email">
 
+        <input type="password" placeholder="Enter password" class="border-1 border-red-500 rounded-sm px-2" >
+
+        <select  id="">
+            <option value="male">male   </option>
+            <option value="female">female   </option>
+            <option value="other">other</option>
+        </select>
+
+        <textarea class="border-1 border-red-500 rounded-sm px-2">
+            what about us 
+        </textarea>
+
+    <button>submit</button>
+
+
+    </form>
+   
 </div>
 
  
