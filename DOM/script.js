@@ -1,25 +1,14 @@
-let count =0 
-let progress = document.querySelector(".progress")
-let percent = document.querySelector(".per");
-let btn = document.querySelector(".btn");
-
-let interval = setInterval(()=>{
-    if(count >= 100){
-        clearInterval(interval)
-        return
-    }
-
-    count++
-    progress.style.width = `${count}%`
-    percent.textContent = `${count}%`
-},30)
+let btn = document.querySelector("#showBtn")
+let banner = document.querySelector("#banner")
 
 
-btn.addEventListener("click",()=>{
-    clearInterval(interval)
-    count = 0
-progress.style.width = "0%"
-percent.textContent = "0%"
-    btn.textContent ="done"
-}
-)
+btn.addEventListener('click',()=>{
+    banner.classList.add("show")
+
+    setTimeout(()=>{
+        
+     banner.classList.remove("show")
+    },2000)
+
+
+})

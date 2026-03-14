@@ -1,109 +1,39 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family: system-ui, -apple-system, sans-serif;
-}
-
 body{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-background:linear-gradient(135deg,#0f172a,#020617);
-color:white;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0f172a;
+  font-family:sans-serif;
 }
 
-/* wrapper center */
-
-.wrapper{
-position:relative;
+button{
+  padding:12px 22px;
+  border:none;
+  background:#22c55e;
+  color:white;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-/* glass card */
+/* banner */
 
-.card{
-width:320px;
-padding:26px;
-border-radius:18px;
-backdrop-filter: blur(14px);
-background: rgba(255,255,255,0.06);
-border:1px solid rgba(255,255,255,0.12);
-box-shadow:0 20px 40px rgba(0,0,0,0.6);
+.banner{
+  position:fixed;
+  top:20px;
+  right:20px;
+  padding:14px 24px;
+  background:#16a34a;
+  color:white;
+  border-radius:8px;
+  opacity:0;
+  transform:translateY(-20px);
+  transition:0.4s;
 }
 
-/* header */
+/* show state */
 
-.header{
-display:flex;
-gap:14px;
-align-items:center;
-margin-bottom:22px;
-}
-
-.icon{
-width:44px;
-height:44px;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:rgba(255,255,255,0.08);
-font-size:20px;
-}
-
-h3{
-font-size:17px;
-margin-bottom:2px;
-}
-
-p{
-font-size:13px;
-opacity:.6;
-}
-
-/* progress */
-
-.progress-area{
-margin-bottom:22px;
-}
-
-.progress-bar{
-width:100%;
-height:10px;
-border-radius:50px;
-background:rgba(255,255,255,0.08);
-overflow:hidden;
-}
-
-.progress{
-width:0%;
-height:100%;
-background:linear-gradient(90deg,#22c55e,#06b6d4);
-border-radius:50px;
-}
-
-.meta{
-margin-top:8px;
-display:flex;
-justify-content:space-between;
-font-size:12px;
-opacity:.7;
-}
-
-/* button */
-
-.btn{
-width:100%;
-padding:11px;
-border:none;
-border-radius:12px;
-background:rgba(255,255,255,0.08);
-color:white;
-cursor:pointer;
-transition:.25s;
-}
-
-.btn:hover{
-background:rgba(255,255,255,0.18);
+.banner.show{
+  opacity:1;
+  transform:translateY(0);
 }
