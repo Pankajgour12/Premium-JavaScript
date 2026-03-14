@@ -1,4 +1,4 @@
-0i//! What is the DOM? How does it represent the HTML structure?
+//! What is the DOM? How does it represent the HTML structure?
 //*: The DOM (Document Object Model) is a tree-like object representation of an HTML document created by the browser. Each HTML element becomes a node in the DOM tree, allowing JavaScript to access and manipulate the structure, content, and styles dynamically
 
 //! Name the types of nodes in the DOM tree.
@@ -86,9 +86,26 @@ for(let i=0; i<list.length;i++){
 let p = document.querySelector("p").innerHTML="<b>Updated </b>  by JavaScript"
 
 
-// add a title attribute to a div dynamically.
 
 
 
-they
-this is basic questions in the main
+
+
+
+
+
+
+
+
+const localStorage = ` aapke browser ke ander data store krna 
+jo ki browser band hone par bhi delete nhi hoga `
+
+
+//? SessionStorage = ye data ko temporarily store karta hai 
+//? matlab ki tab band hua aur data gya 
+
+//* cookies -->  ye bhi data store karta hai and
+// aapke data browser ke cookies naam ki property mein save hota hai and 
+// ye cookie concept kam data ya light data ke liye hota hai 
+
+ 
