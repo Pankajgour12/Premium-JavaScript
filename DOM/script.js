@@ -1,4 +1,4 @@
-let btn = document.querySelector("#showBtn")
+/* let btn = document.querySelector("#showBtn")
 let banner = document.querySelector("#banner")
 
 
@@ -12,3 +12,94 @@ btn.addEventListener('click',()=>{
 
 
 })
+ */
+
+
+
+
+let users = [
+{
+    name:"Harsh Sharma",
+    pic:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
+    bio:"Silent chaos in a loud world ❤️ | not for everyone"
+},
+{
+    name:"Aarav Verma",
+    pic:"https://images.unsplash.com/photo-1527980965255-d3b416303d12",
+    bio:"Building dreams with broken pieces 🚀"
+},
+{
+    name:"Rohan Mehta",
+    pic:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
+    bio:"Coffee first, logic later ☕"
+},
+{
+    name:"Kabir Singh",
+    pic:"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde",
+    bio:"Lost in thoughts, found in code 💻"
+},
+{
+    name:"Vivaan Gupta",
+    pic:"https://images.unsplash.com/photo-1544005313-94ddf0286df2",
+    bio:"Minimal words, maximum vision 🎯"
+},
+{
+    name:"Aditya Kapoor",
+    pic:"https://images.unsplash.com/photo-1552058544-f2b08422138a",
+    bio:"Creating vibes not noise ✨"
+},
+{
+    name:"Ishaan Malhotra",
+    pic:"https://images.unsplash.com/photo-1517841905240-472988babdf9",
+    bio:"Learning daily, failing gracefully 📈"
+},
+{
+    name:"Aryan Nair",
+    pic:"https://images.unsplash.com/photo-1539571696357-5a69c17a67c6",
+    bio:"Mindset > Talent always 🧠"
+}
+];
+
+
+function showUsers(arr){
+
+   arr.forEach((user)=>{
+  const card = document.createElement("div");
+card.className = "card";
+
+const img = document.createElement("img");
+img.src = user.pic
+img.className = "bg-img";
+
+const blur = document.createElement("div");
+blur.className = "blurred-layer";
+
+const content = document.createElement("div");
+content.className = "content";
+
+const h3 = document.createElement("h3");
+h3.textContent = user.name;
+
+const p = document.createElement("p");
+p.textContent = user.bio
+
+content.appendChild(h3);
+content.appendChild(p);
+
+card.appendChild(img);
+card.appendChild(blur);
+card.appendChild(content);
+
+
+
+// add to page
+
+document.querySelector(".cards").appendChild(card)
+
+
+   })
+
+}
+
+
+showUsers(users)
