@@ -1,14 +1,109 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: system-ui, -apple-system, sans-serif;
 }
 
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000000bb;
+body{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#0f172a,#020617);
+color:white;
+}
+
+/* wrapper center */
+
+.wrapper{
+position:relative;
+}
+
+/* glass card */
+
+.card{
+width:320px;
+padding:26px;
+border-radius:18px;
+backdrop-filter: blur(14px);
+background: rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.12);
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* header */
+
+.header{
+display:flex;
+gap:14px;
+align-items:center;
+margin-bottom:22px;
+}
+
+.icon{
+width:44px;
+height:44px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,0.08);
+font-size:20px;
+}
+
+h3{
+font-size:17px;
+margin-bottom:2px;
+}
+
+p{
+font-size:13px;
+opacity:.6;
+}
+
+/* progress */
+
+.progress-area{
+margin-bottom:22px;
+}
+
+.progress-bar{
+width:100%;
+height:10px;
+border-radius:50px;
+background:rgba(255,255,255,0.08);
+overflow:hidden;
+}
+
+.progress{
+width:0%;
+height:100%;
+background:linear-gradient(90deg,#22c55e,#06b6d4);
+border-radius:50px;
+}
+
+.meta{
+margin-top:8px;
+display:flex;
+justify-content:space-between;
+font-size:12px;
+opacity:.7;
+}
+
+/* button */
+
+.btn{
+width:100%;
+padding:11px;
+border:none;
+border-radius:12px;
+background:rgba(255,255,255,0.08);
+color:white;
+cursor:pointer;
+transition:.25s;
+}
+
+.btn:hover{
+background:rgba(255,255,255,0.18);
 }
