@@ -111,3 +111,11 @@ inp.addEventListener("input", ()=>{
 
     renderUsers(filtered);
 });
+
+
+const txt = document.querySelector(".txt")
+const count = document.querySelector(".count")
+
+txt.addEventListener("input", ()=>{
+    count.textContent = `${txt.value.length} / 100`
+})
