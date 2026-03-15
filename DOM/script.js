@@ -148,3 +148,47 @@ btn.addEventListener("click", ()=>{
     },3000)
 
 })
+
+
+const input = document.getElementById("tagInput")
+const tagBox = document.getElementById("tagBox")
+
+let tags = []
+
+input.addEventListener("keydown", (e)=>{
+
+    if(e.key === "Enter" && input.value.trim() !== ""){
+        
+        const value = input.value.trim()
+
+        if(tags.includes(value)) return
+
+        tags.push(value)
+
+        const chip = document.createElement("div")
+        chip.className = `
+          flex items-center gap-2 px-3 py-1 
+          bg-indigo-500 text-white rounded-full text-sm
+        `
+
+        chip.innerHTML = `
+            ${value}
+            <span class="remove cursor-pointer">✕</span>
+        `
+
+        tagBox.insertBefore(chip, input)
+
+        input.value = ""
+    }
+
+})
+
+tagBox.addEventListener("click", (e)=>{
+
+    if(e.target.classList.contains("remove")){
+        const text = e.target.parentElement.firstChild.textContent.trim()
+        tags = tags.filter(t => t !== text)
+        e.target.parentElement.remove()
+    }
+
+})
