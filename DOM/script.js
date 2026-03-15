@@ -16,7 +16,7 @@ btn.addEventListener('click',()=>{
 
 
 
-
+/* 
 let users = [
 {
     name:"Harsh Sharma",
@@ -112,10 +112,39 @@ inp.addEventListener("input", ()=>{
     renderUsers(filtered);
 });
 
-
+ */
 const txt = document.querySelector(".txt")
 const count = document.querySelector(".count")
 
 txt.addEventListener("input", ()=>{
     count.textContent = `${txt.value.length} / 100`
+})
+
+
+const btn = document.getElementById("showToast")
+const container = document.getElementById("toastContainer")
+
+btn.addEventListener("click", ()=>{
+
+    const toast = document.createElement("div")
+
+    toast.className = `
+        bg-slate-800 text-white px-5 py-4 rounded-xl
+        shadow-lg border border-slate-700
+        animate-[fadeIn_.3s_ease]
+    `
+
+    toast.innerHTML = `
+        <div class="flex items-center justify-between gap-6">
+            <p>Profile updated successfully 🚀</p>
+            <button class="close text-red-400">✕</button>
+        </div>
+    `
+
+    container.appendChild(toast)
+
+    setTimeout(()=>{
+        toast.remove()
+    },3000)
+
 })
