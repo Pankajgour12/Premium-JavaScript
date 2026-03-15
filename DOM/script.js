@@ -39,7 +39,7 @@ let users = [
     bio:"Lost in thoughts, found in code 💻"
 },
 {
-    name:"Vivaan Gupta",
+    name:"Harsh Sharma",
     pic:"https://images.unsplash.com/photo-1544005313-94ddf0286df2",
     bio:"Minimal words, maximum vision 🎯"
 },
@@ -63,8 +63,8 @@ let users = [
 
 function showUsers(arr){
 
-   arr.forEach((user)=>{
-  const card = document.createElement("div");
+ arr.forEach((user)=>{
+const card = document.createElement("div");
 card.className = "card";
 
 const img = document.createElement("img");
@@ -103,3 +103,15 @@ document.querySelector(".cards").appendChild(card)
 
 
 showUsers(users)
+
+
+let inp = document.querySelector(".inp")
+
+inp.addEventListener("input",()=>{
+     
+  let newUser =    users.filter((user)=>{
+        return user.name.startsWith(inp.value)
+      });
+      document.querySelector(".cards").innerHTML = "";
+      showUsers(newUser);
+})
