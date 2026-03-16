@@ -272,3 +272,67 @@ next.onclick = ()=>{
 }
 
 render()
+
+
+
+
+
+
+
+
+
+
+
+
+const icons = ["🍎","🍌","🍒","🍇","🍉","🥝","🍍","🍓"]
+let cards = [...icons, ...icons]
+
+cards.sort(()=> Math.random() - 0.5)
+
+const board = document.getElementById("board")
+
+let first = null
+let second = null
+let lock = false
+
+cards.forEach(icon => {
+
+    const card = document.createElement("div")
+    card.className = `
+      h-20 bg-slate-700 flex items-center justify-center 
+      text-2xl rounded-lg cursor-pointer
+    `
+    card.dataset.icon = icon
+    card.textContent = ""
+
+    card.onclick = ()=>{
+
+        if(lock || card.textContent) return
+
+        card.textContent = icon
+
+        if(!first){
+            first = card
+            return
+        }
+
+        second = card
+        lock = true
+
+        if(first.dataset.icon === second.dataset.icon){
+            first = null
+            second = null
+            lock = false
+        }else{
+            setTimeout(()=>{
+                first.textContent = ""
+                second.textContent = ""
+                first = null
+                second = null
+                lock = false
+            },800)
+        }
+    }
+
+    board.appendChild(card)
+})
