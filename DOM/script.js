@@ -383,38 +383,4 @@ cards.forEach(icon => {
 }) */
 
 
-    const box = document.getElementById("box")
-const inc = document.getElementById("inc")
-const undo = document.getElementById("undo")
-const redo = document.getElementById("redo")
-
-let value = 0
-let history = []
-let future = []
-
-function render(){
-    box.textContent = value
-}
-
-inc.onclick = ()=>{
-    history.push(value)
-    value++
-    future = []
-    render()
-}
-
-undo.onclick = ()=>{
-    if(history.length === 0) return
-    future.push(value)
-    value = history.pop()
-    render()
-}
-
-redo.onclick = ()=>{
-    if(future.length === 0) return
-    history.push(value)
-    value = future.pop()
-    render()
-}
-
-render()
+ 
