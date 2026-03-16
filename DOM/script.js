@@ -130,14 +130,14 @@ btn.addEventListener("click", ()=>{
 
     toast.className = `
         bg-slate-800 text-white px-5 py-4 rounded-xl
-        shadow-lg border border-slate-700
+        shadow-lg border bg-green-500 border-slate-700
         animate-[fadeIn_.3s_ease]
     `
 
     toast.innerHTML = `
         <div class="flex items-center justify-between gap-6">
-            <p>Profile updated successfully 🚀</p>
-            <button class="close text-red-400">✕</button>
+            <p>Profile updated successfully </p>
+            <button class="close  text-red-400">✕</button>
         </div>
     `
 
@@ -186,7 +186,9 @@ input.addEventListener("keydown", (e)=>{
 tagBox.addEventListener("click", (e)=>{
 
     if(e.target.classList.contains("remove")){
-        const text = e.target.parentElement.firstChild.textContent.trim()
+        const text = e.target.parentElement.
+        firstChild.textContent
+        .trim()
         tags = tags.filter(t => t !== text)
         e.target.parentElement.remove()
     }
