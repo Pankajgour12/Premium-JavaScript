@@ -383,4 +383,48 @@ cards.forEach(icon => {
 }) */
 
 
+    const habitData = [
+{ name:"Workout", done:false },
+{ name:"Read Book", done:false },
+{ name:"Code Practice", done:false },
+{ name:"Meditation", done:false },
+{ name:"Drink Water", done:false }
+]
+
+const container = document.getElementById("habits")
+
+function render(){
+    container.innerHTML = ""
+
+    habitData.forEach((habit, index)=>{
+
+        const row = document.createElement("div")
+        row.className = `
+          flex items-center justify-between 
+          bg-slate-700 px-5 py-3 rounded-lg
+        `
+
+        const title = document.createElement("p")
+        title.textContent = habit.name
+
+        const btn = document.createElement("button")
+
+        btn.className = habit.done
+            ? "px-3 py-1 bg-green-500 rounded"
+            : "px-3 py-1 bg-red-500 rounded"
+
+        btn.textContent = habit.done ? "Done" : "Pending"
+
+        btn.onclick = ()=>{
+            habit.done = !habit.done
+            render()
+        }
+
+        row.append(title, btn)
+        container.appendChild(row)
+    })
+}
+
+render()
+
  
