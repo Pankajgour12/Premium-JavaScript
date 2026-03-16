@@ -194,3 +194,81 @@ tagBox.addEventListener("click", (e)=>{
     }
 
 })
+
+
+
+
+
+
+
+
+
+
+
+const quiz = [
+{
+ q:"Which language runs in browser?",
+ options:["Java","C","Python","JavaScript"],
+ answer:"JavaScript"
+},
+{
+ q:"Which is frontend library?",
+ options:["Node","React","MongoDB","Express"],
+ answer:"React"
+},
+{
+ q:"Which is styling language?",
+ options:["HTML","CSS","JS","Python"],
+ answer:"CSS"
+}
+]
+
+let index = 0
+let score = 0
+let selected = null
+
+const q = document.getElementById("question")
+const opt = document.getElementById("options")
+const next = document.getElementById("next")
+const scoreEl = document.getElementById("score")
+
+function render(){
+    selected = null
+    q.textContent = quiz[index].q
+    opt.innerHTML = ""
+
+    quiz[index].options.forEach(o=>{
+        const btn = document.createElement("button")
+        btn.className = "px-4 py-2 bg-slate-700 rounded hover:bg-slate-600"
+        btn.textContent = o
+
+        btn.onclick = ()=>{
+            selected = o
+            document.querySelectorAll("#options button")
+              .forEach(b=> b.classList.remove("bg-indigo-500"))
+
+            btn.classList.add("bg-indigo-500")
+        }
+
+        opt.appendChild(btn)
+    })
+}
+
+next.onclick = ()=>{
+    if(selected === quiz[index].answer){
+        score++
+    }
+
+    index++
+
+    if(index < quiz.length){
+        render()
+    }else{
+        q.textContent = "Quiz Finished"
+        opt.innerHTML = ""
+        next.style.display = "none"
+        scoreEl.textContent = `Score: ${score}/${quiz.length}`
+    }
+}
+
+render()
