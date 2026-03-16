@@ -276,7 +276,52 @@ render()
 
 
 
+const sample = "javascript dom logic makes frontend powerful"
 
+const textEl = document.getElementById("text")
+const inp = document.getElementById("inp")
+const timeEl = document.getElementById("time")
+const wpmEl = document.getElementById("wpm")
+const accEl = document.getElementById("acc")
+
+textEl.textContent = sample
+
+let time = 0
+let started = false
+
+let interval
+
+inp.addEventListener("input", ()=>{
+
+    if(!started){
+        started = true
+        interval = setInterval(()=>{
+            time++
+            timeEl.textContent = time
+        },1000)
+    }
+
+    const typed = inp.value
+
+    let correct = 0
+
+    for(let i=0;i<typed.length;i++){
+        if(typed[i] === sample[i]){
+            correct++
+        }
+    }
+
+    const acc = Math.floor((correct / typed.length) * 100)
+    accEl.textContent = acc || 0
+
+    const wpm = Math.floor((typed.length / 5) / (time / 60))
+    wpmEl.textContent = wpm || 0
+
+    if(typed === sample){
+        clearInterval(interval)
+    }
+
+})
 
 
 
