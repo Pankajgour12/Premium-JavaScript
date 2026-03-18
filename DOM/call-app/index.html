@@ -1,117 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Call Notes</title>
+  <title>CallLog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- Background Grid -->
-  <div class="bg-grid"></div>
+  <div class="noise"></div>
 
-  <!-- Main App -->
-  <div class="app">
-
-    <!-- Header -->
-    <header class="header">
-      <div class="header-left">
-        <span class="logo-dot"></span>
-        <h1 class="logo-text">CallNotes</h1>
+  <header class="header">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.04-1.04a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </div>
-      <div class="header-right">
-        <span class="card-count" id="card-count">0 notes</span>
-        <button class="add-btn" id="add-note" title="Add new note">
-          <span class="plus-icon">+</span>
-        </button>
+      <span class="brand-name">CallLog</span>
+    </div>
+    <div class="header-right">
+      <div class="counter">
+        <span id="count-num">0</span>
+        <span class="counter-label">calls</span>
       </div>
-    </header>
+      <button class="fab" id="add-btn">
+        <span class="fab-plus">+</span>
+        <span class="fab-text">New Call</span>
+      </button>
+    </div>
+  </header>
 
-    <!-- Cards Area -->
-    <main class="main-area">
+  <main class="stage">
 
-      <!-- Empty State -->
-      <div class="empty-state" id="empty-state">
-        <div class="empty-icon">📋</div>
-        <p class="empty-title">No call notes yet</p>
-        <p class="empty-sub">Hit the <strong>+</strong> button to add your first one</p>
+    <div class="empty" id="empty">
+      <div class="empty-glyph">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.04-1.04a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </div>
-
-      <!-- Card Slider -->
-      <div class="slider-wrapper" id="slider-wrapper" style="display:none;">
-        <button class="nav-btn nav-left" id="nav-left">&#8592;</button>
-        <div class="cards-track" id="cards-track"></div>
-        <button class="nav-btn nav-right" id="nav-right">&#8594;</button>
-        <div class="slider-dots" id="slider-dots"></div>
-      </div>
-
-    </main>
-  </div>
-
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
-
-  <!-- Form Modal -->
-  <div class="form-modal" id="form-modal">
-    <div class="form-header">
-      <h2 class="form-title">New Call Note</h2>
-      <button class="close-btn" id="close-form">&#x2715;</button>
+      <p class="empty-title">No calls logged</p>
+      <p class="empty-hint">Hit <strong>+&nbsp;New Call</strong> to begin</p>
     </div>
 
-    <form id="note-form" novalidate>
+    <div class="deck-scene" id="deck-scene" style="display:none">
+      <div class="deck" id="deck"></div>
+      <div class="deck-nav">
+        <button class="nav-btn" id="nav-prev">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="dots" id="dots"></div>
+        <button class="nav-btn" id="nav-next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
 
-      <div class="form-group">
-        <label class="form-label">Profile Image URL</label>
-        <input class="form-input" type="text" id="input-image" placeholder="https://example.com/photo.jpg" />
-        <span class="error-msg" id="err-image"></span>
+  </main>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <p class="modal-title">New Call Note</p>
+        <button class="close-btn" id="modal-close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
 
-      <div class="form-group">
-        <label class="form-label">Full Name</label>
-        <input class="form-input" type="text" id="input-name" placeholder="Enter full name" />
-        <span class="error-msg" id="err-name"></span>
-      </div>
+      <form id="form" novalidate autocomplete="off">
 
-      <div class="form-group">
-        <label class="form-label">Home Town</label>
-        <input class="form-input" type="text" id="input-town" placeholder="Enter home town" />
-        <span class="error-msg" id="err-town"></span>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Purpose</label>
-        <input class="form-input" type="text" id="input-purpose" placeholder="e.g. Quick appointment" />
-        <span class="error-msg" id="err-purpose"></span>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Category</label>
-        <div class="radio-group">
-          <label class="radio-option emergency">
-            <input type="radio" name="category" value="emergency" />
-            <span class="radio-pill">🚨 Emergency</span>
-          </label>
-          <label class="radio-option important">
-            <input type="radio" name="category" value="important" />
-            <span class="radio-pill">⚡ Important</span>
-          </label>
-          <label class="radio-option no-rush">
-            <input type="radio" name="category" value="no-rush" />
-            <span class="radio-pill">🍃 No Rush</span>
-          </label>
+        <div class="field">
+          <label class="flabel">Profile Image URL</label>
+          <input class="finput" id="f-img" type="text" placeholder="https://i.pravatar.cc/150?img=3"/>
+          <span class="ferr" id="e-img"></span>
         </div>
-        <span class="error-msg" id="err-category"></span>
-      </div>
 
-      <button type="submit" class="submit-btn">
-        <span>Save Note</span>
-        <span class="btn-arrow">→</span>
-      </button>
+        <div class="field-row">
+          <div class="field">
+            <label class="flabel">Full Name</label>
+            <input class="finput" id="f-name" type="text" placeholder="Rahul Sharma"/>
+            <span class="ferr" id="e-name"></span>
+          </div>
+          <div class="field">
+            <label class="flabel">Home Town</label>
+            <input class="finput" id="f-town" type="text" placeholder="Bhopal"/>
+            <span class="ferr" id="e-town"></span>
+          </div>
+        </div>
 
-    </form>
+        <div class="field">
+          <label class="flabel">Purpose</label>
+          <input class="finput" id="f-purpose" type="text" placeholder="e.g. Follow-up on appointment"/>
+          <span class="ferr" id="e-purpose"></span>
+        </div>
+
+        <div class="field">
+          <label class="flabel">Category</label>
+          <div class="pills">
+            <label class="pill p-em"><input type="radio" name="cat" value="emergency"/><span>🚨 Emergency</span></label>
+            <label class="pill p-im"><input type="radio" name="cat" value="important"/><span>⚡ Important</span></label>
+            <label class="pill p-nr"><input type="radio" name="cat" value="no-rush"/><span>🍃 No Rush</span></label>
+          </div>
+          <span class="ferr" id="e-cat"></span>
+        </div>
+
+        <button type="submit" class="save-btn">Save Note →</button>
+
+      </form>
+    </div>
   </div>
 
   <script src="script.js"></script>

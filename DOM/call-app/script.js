@@ -1,351 +1,259 @@
-// ==============================
-//  DOM REFERENCES
-// ==============================
-const addNoteBtn    = document.getElementById('add-note');
-const closeFormBtn  = document.getElementById('close-form');
-const overlay       = document.getElementById('overlay');
-const formModal     = document.getElementById('form-modal');
-const noteForm      = document.getElementById('note-form');
+/* ── DOM ─────────────────────────────────────── */
+const addBtn    = document.getElementById('add-btn');
+const overlay   = document.getElementById('overlay');
+const modal     = document.getElementById('modal');
+const modalClose= document.getElementById('modal-close');
+const form      = document.getElementById('form');
 
-const inputImage    = document.getElementById('input-image');
-const inputName     = document.getElementById('input-name');
-const inputTown     = document.getElementById('input-town');
-const inputPurpose  = document.getElementById('input-purpose');
+const fImg      = document.getElementById('f-img');
+const fName     = document.getElementById('f-name');
+const fTown     = document.getElementById('f-town');
+const fPurpose  = document.getElementById('f-purpose');
 
-const errImage      = document.getElementById('err-image');
-const errName       = document.getElementById('err-name');
-const errTown       = document.getElementById('err-town');
-const errPurpose    = document.getElementById('err-purpose');
-const errCategory   = document.getElementById('err-category');
+const eImg      = document.getElementById('e-img');
+const eName     = document.getElementById('e-name');
+const eTown     = document.getElementById('e-town');
+const ePurpose  = document.getElementById('e-purpose');
+const eCat      = document.getElementById('e-cat');
 
-const cardsTrack    = document.getElementById('cards-track');
-const sliderWrapper = document.getElementById('slider-wrapper');
-const emptyState    = document.getElementById('empty-state');
-const navLeft       = document.getElementById('nav-left');
-const navRight      = document.getElementById('nav-right');
-const sliderDots    = document.getElementById('slider-dots');
-const cardCount     = document.getElementById('card-count');
+const deck      = document.getElementById('deck');
+const deckScene = document.getElementById('deck-scene');
+const emptyEl   = document.getElementById('empty');
+const navPrev   = document.getElementById('nav-prev');
+const navNext   = document.getElementById('nav-next');
+const dotsEl    = document.getElementById('dots');
+const countNum  = document.getElementById('count-num');
 
-// ==============================
-//  STATE
-// ==============================
-let notes = [];
-let currentIndex = 0;
+/* ── STATE ────────────────────────────────────── */
+let notes   = [];
+let current = 0;       // index of top card
 
-// ==============================
-//  LOCAL STORAGE
-// ==============================
-function saveToStorage() {
-  localStorage.setItem('callnotes', JSON.stringify(notes));
-}
+/* ── STORAGE ──────────────────────────────────── */
+function save()  { localStorage.setItem('calllog_v2', JSON.stringify(notes)) }
+function load()  { return JSON.parse(localStorage.getItem('calllog_v2') || '[]') }
 
-function loadFromStorage() {
-  const raw = localStorage.getItem('callnotes');
-  return raw ? JSON.parse(raw) : [];
-}
-
-// ==============================
-//  FORM OPEN / CLOSE
-// ==============================
-function openForm() {
-  formModal.classList.add('active');
-  overlay.classList.add('active');
+/* ── MODAL ────────────────────────────────────── */
+function openModal() {
+  modal.classList.add('on');
+  overlay.classList.add('on');
   document.body.style.overflow = 'hidden';
-  setTimeout(() => inputImage.focus(), 300);
+  setTimeout(() => fImg.focus(), 200);
 }
-
-function closeForm() {
-  formModal.classList.remove('active');
-  overlay.classList.remove('active');
+function closeModal() {
+  modal.classList.remove('on');
+  overlay.classList.remove('on');
   document.body.style.overflow = '';
-  noteForm.reset();
-  clearAllErrors();
+  form.reset();
+  clearErrors();
 }
 
-addNoteBtn.addEventListener('click', openForm);
-closeFormBtn.addEventListener('click', closeForm);
-overlay.addEventListener('click', closeForm);
+addBtn   .addEventListener('click', openModal);
+modalClose.addEventListener('click', closeModal);
+overlay  .addEventListener('click', closeModal);
+document .addEventListener('keydown', e => { if (e.key === 'Escape') closeModal() });
 
-// ==============================
-//  VALIDATION HELPERS
-// ==============================
-function showError(el, msg) {
-  el.textContent = msg;
-  el.classList.add('show');
-  // highlight corresponding input
-  const group = el.closest('.form-group');
-  if (group) {
-    const inp = group.querySelector('.form-input');
-    if (inp) inp.classList.add('invalid');
-  }
+/* ── VALIDATION ───────────────────────────────── */
+function showErr(el, inp, msg) {
+  el.textContent = msg; el.classList.add('on');
+  if (inp) inp.classList.add('bad');
+}
+function clearErr(el, inp) {
+  el.textContent = ''; el.classList.remove('on');
+  if (inp) inp.classList.remove('bad');
+}
+function clearErrors() {
+  clearErr(eImg, fImg); clearErr(eName, fName);
+  clearErr(eTown, fTown); clearErr(ePurpose, fPurpose);
+  clearErr(eCat, null);
 }
 
-function clearError(el) {
-  el.textContent = '';
-  el.classList.remove('show');
-  const group = el.closest('.form-group');
-  if (group) {
-    const inp = group.querySelector('.form-input');
-    if (inp) inp.classList.remove('invalid');
-  }
+// live clear on input
+[[fImg,eImg],[fName,eName],[fTown,eTown],[fPurpose,ePurpose]]
+  .forEach(([inp,err]) => inp.addEventListener('input', () => clearErr(err, inp)));
+
+function validate() {
+  clearErrors();
+  const img     = fImg.value.trim();
+  const name    = fName.value.trim();
+  const town    = fTown.value.trim();
+  const purpose = fPurpose.value.trim();
+  const catEl   = form.querySelector('input[name="cat"]:checked');
+  let ok = true;
+
+  if (!img)                     { showErr(eImg, fImg, 'Image URL required'); ok=false }
+  else if (!img.startsWith('http')) { showErr(eImg, fImg, 'Must start with http://'); ok=false }
+
+  if (!name)                    { showErr(eName, fName, 'Name required'); ok=false }
+  else if (name.length < 3)     { showErr(eName, fName, 'Min 3 characters'); ok=false }
+
+  if (!town)                    { showErr(eTown, fTown, 'Town required'); ok=false }
+
+  if (!purpose)                 { showErr(ePurpose, fPurpose, 'Purpose required'); ok=false }
+  else if (purpose.length < 5)  { showErr(ePurpose, fPurpose, 'Min 5 characters'); ok=false }
+
+  if (!catEl)                   { showErr(eCat, null, 'Pick a category'); ok=false }
+
+  if (!ok) return null;
+  return { img, name, town, purpose, category: catEl.value };
 }
 
-function clearAllErrors() {
-  [errImage, errName, errTown, errPurpose, errCategory].forEach(clearError);
-}
-
-// Clear errors on input
-[inputImage, inputName, inputTown, inputPurpose].forEach(inp => {
-  inp.addEventListener('input', () => {
-    const errMap = {
-      'input-image':   errImage,
-      'input-name':    errName,
-      'input-town':    errTown,
-      'input-purpose': errPurpose,
-    };
-    clearError(errMap[inp.id]);
-  });
-});
-
-function validateForm() {
-  clearAllErrors();
-  let valid = true;
-
-  const image   = inputImage.value.trim();
-  const name    = inputName.value.trim();
-  const town    = inputTown.value.trim();
-  const purpose = inputPurpose.value.trim();
-  const catEl   = noteForm.querySelector('input[name="category"]:checked');
-
-  if (!image) {
-    showError(errImage, 'Image URL is required'); valid = false;
-  } else if (!image.startsWith('http')) {
-    showError(errImage, 'Must be a valid URL starting with http'); valid = false;
-  }
-
-  if (!name) {
-    showError(errName, 'Full name is required'); valid = false;
-  } else if (name.length < 3) {
-    showError(errName, 'Name must be at least 3 characters'); valid = false;
-  }
-
-  if (!town) {
-    showError(errTown, 'Home town is required'); valid = false;
-  }
-
-  if (!purpose) {
-    showError(errPurpose, 'Purpose is required'); valid = false;
-  } else if (purpose.length < 5) {
-    showError(errPurpose, 'Purpose must be at least 5 characters'); valid = false;
-  }
-
-  if (!catEl) {
-    showError(errCategory, 'Please select a category'); valid = false;
-  }
-
-  return { valid, image, name, town, purpose, category: catEl ? catEl.value : null };
-}
-
-// ==============================
-//  FORM SUBMIT
-// ==============================
-noteForm.addEventListener('submit', (e) => {
+/* ── FORM SUBMIT ──────────────────────────────── */
+form.addEventListener('submit', e => {
   e.preventDefault();
-  const { valid, image, name, town, purpose, category } = validateForm();
-  if (!valid) return;
+  const data = validate();
+  if (!data) return;
 
-  const note = {
+  notes.push({
     id: Date.now(),
-    image,
-    name,
-    town,
-    purpose,
-    category,
-    date: new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })
-  };
+    image:    data.img,
+    name:     data.name,
+    town:     data.town,
+    purpose:  data.purpose,
+    category: data.category,
+    date:     new Date().toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })
+  });
 
-  notes.push(note);
-  saveToStorage();
-  closeForm();
-  renderAll();
-  // Go to newly added card
-  goToIndex(notes.length - 1);
+  save();
+  closeModal();
+  current = notes.length - 1;   // jump to new card
+  render();
 });
 
-// ==============================
-//  RENDER
-// ==============================
-function renderAll() {
-  cardsTrack.innerHTML = '';
-  sliderDots.innerHTML = '';
-
-  cardCount.textContent = notes.length === 0
-    ? '0 notes'
-    : `${notes.length} note${notes.length > 1 ? 's' : ''}`;
+/* ── RENDER ───────────────────────────────────── */
+function render() {
+  deck.innerHTML = '';
+  dotsEl.innerHTML = '';
+  countNum.textContent = notes.length;
 
   if (notes.length === 0) {
-    sliderWrapper.style.display = 'none';
-    emptyState.style.display = 'block';
+    deckScene.style.display = 'none';
+    emptyEl.style.display   = 'block';
     return;
   }
 
-  sliderWrapper.style.display = 'flex';
-  emptyState.style.display = 'none';
+  deckScene.style.display = 'flex';
+  emptyEl.style.display   = 'none';
 
+  /* Build cards — all of them, we assign layer via data-layer */
   notes.forEach((note, i) => {
-    // Card
-    const card = createCard(note, i);
-    cardsTrack.appendChild(card);
-
-    // Dot
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === currentIndex ? ' active' : '');
-    dot.addEventListener('click', () => goToIndex(i));
-    sliderDots.appendChild(dot);
+    const card = buildCard(note, i);
+    deck.appendChild(card);
   });
 
-  updateActiveCard();
-  updateNavButtons();
+  assignLayers();
+  buildDots();
+  updateNav();
 }
 
-function createCard(note, index) {
-  const card = document.createElement('div');
-  card.className = 'note-card';
-  card.dataset.index = index;
+/**
+ * layer 0 = active (top), 1/2/3 = cards behind it
+ * cards before current index — not visible
+ * cards after current index — peek behind
+ */
+function assignLayers() {
+  const cards = deck.querySelectorAll('.card');
+  cards.forEach((card, i) => {
+    const diff = i - current;
+    if (diff < 0 || diff > 3) {
+      card.removeAttribute('data-layer');
+    } else {
+      card.setAttribute('data-layer', diff);
+    }
+  });
+}
 
-  const badgeClass = `badge-${note.category}`;
-  const badgeEmoji = { emergency: '🚨', important: '⚡', 'no-rush': '🍃' }[note.category] || '';
-  const badgeLabel = { emergency: 'Emergency', important: 'Important', 'no-rush': 'No Rush' }[note.category] || note.category;
-  const initial = note.name.charAt(0).toUpperCase();
+function buildCard(note, idx) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.idx = idx;
+
+  const init  = note.name.charAt(0).toUpperCase();
+  const badge = { emergency:'🚨 Emergency', important:'⚡ Important', 'no-rush':'🍃 No Rush' }[note.category] || note.category;
 
   card.innerHTML = `
-    <div class="card-top">
-      <img
-        class="card-avatar"
-        src="${escapeHtml(note.image)}"
-        alt="${escapeHtml(note.name)}"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-      />
-      <div class="card-avatar-fallback" style="display:none;">${initial}</div>
-      <div class="card-identity">
-        <div class="card-name">${escapeHtml(note.name)}</div>
-        <div class="card-town">${escapeHtml(note.town)}</div>
+    <div class="card-bar bar-${note.category}"></div>
+    <div class="card-body">
+      <div class="card-top">
+        <img class="c-avatar" src="${esc(note.image)}" alt="${esc(note.name)}"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="c-avatar-fb" style="display:none">${init}</div>
+        <div class="c-info">
+          <div class="c-name">${esc(note.name)}</div>
+          <div class="c-town">📍 ${esc(note.town)}</div>
+        </div>
       </div>
+      <span class="c-badge badge-${note.category}">${badge}</span>
+      <div class="c-div"></div>
+      <div class="c-purpose-lbl">Purpose</div>
+      <div class="c-purpose-txt">${esc(note.purpose)}</div>
     </div>
-
-    <span class="card-badge ${badgeClass}">${badgeEmoji} ${badgeLabel}</span>
-
-    <div class="card-divider"></div>
-
-    <div>
-      <div class="card-purpose-label">Purpose</div>
-      <div class="card-purpose-text">${escapeHtml(note.purpose)}</div>
-    </div>
-
-    <div class="card-footer">
-      <span class="card-date">${note.date}</span>
-      <span class="card-index">${index + 1} / ${notes.length}</span>
-      <button class="card-delete-btn" data-id="${note.id}">Delete</button>
+    <div class="card-foot">
+      <span class="c-date">${note.date}</span>
+      <button class="c-del" data-id="${note.id}">Delete</button>
     </div>
   `;
 
-  card.querySelector('.card-delete-btn').addEventListener('click', () => deleteNote(note.id));
+  card.querySelector('.c-del').addEventListener('click', () => deleteNote(note.id));
   return card;
 }
 
-function escapeHtml(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-// ==============================
-//  NAVIGATION
-// ==============================
-function goToIndex(newIndex) {
-  if (newIndex < 0 || newIndex >= notes.length) return;
-
-  const cards = cardsTrack.querySelectorAll('.note-card');
-  const dots  = sliderDots.querySelectorAll('.dot');
-
-  // Animate out current
-  if (cards[currentIndex]) {
-    cards[currentIndex].classList.remove('active');
-    if (newIndex > currentIndex) {
-      cards[currentIndex].classList.add('exit-left');
-    } else {
-      cards[currentIndex].style.transform = 'translateX(60px) scale(0.96)';
-      cards[currentIndex].style.opacity = '0';
-    }
-  }
-
-  currentIndex = newIndex;
-
-  // Activate new card after tiny delay for transition
-  setTimeout(() => {
-    // Clean up all
-    cards.forEach(c => {
-      c.classList.remove('active', 'exit-left');
-      c.style.transform = '';
-      c.style.opacity = '';
-    });
-    if (cards[currentIndex]) {
-      cards[currentIndex].classList.add('active');
-    }
-    dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
-    updateNavButtons();
-  }, 50);
-}
-
-function updateActiveCard() {
-  const cards = cardsTrack.querySelectorAll('.note-card');
-  cards.forEach((c, i) => {
-    c.classList.toggle('active', i === currentIndex);
+function buildDots() {
+  notes.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === current ? ' on' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
   });
 }
 
-function updateNavButtons() {
-  navLeft.disabled  = currentIndex <= 0;
-  navRight.disabled = currentIndex >= notes.length - 1;
+function updateNav() {
+  navPrev.disabled = current <= 0;
+  navNext.disabled = current >= notes.length - 1;
 }
 
-navLeft.addEventListener('click', () => goToIndex(currentIndex - 1));
-navRight.addEventListener('click', () => goToIndex(currentIndex + 1));
+/* ── NAVIGATION ───────────────────────────────── */
+function goTo(idx) {
+  if (idx < 0 || idx >= notes.length) return;
+  current = idx;
+  assignLayers();
+  // update dots
+  dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === current));
+  updateNav();
+}
 
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (formModal.classList.contains('active')) return;
-  if (e.key === 'ArrowLeft')  goToIndex(currentIndex - 1);
-  if (e.key === 'ArrowRight') goToIndex(currentIndex + 1);
+navPrev.addEventListener('click', () => goTo(current - 1));
+navNext.addEventListener('click', () => goTo(current + 1));
+
+// keyboard
+document.addEventListener('keydown', e => {
+  if (modal.classList.contains('on')) return;
+  if (e.key === 'ArrowLeft')  goTo(current - 1);
+  if (e.key === 'ArrowRight') goTo(current + 1);
 });
 
-// Touch / Swipe support
-let touchStartX = 0;
-cardsTrack.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-cardsTrack.addEventListener('touchend', e => {
-  const diff = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) {
-    if (diff > 0) goToIndex(currentIndex + 1);
-    else          goToIndex(currentIndex - 1);
-  }
+// swipe
+let tx = 0;
+deck.addEventListener('touchstart', e => { tx = e.touches[0].clientX }, { passive:true });
+deck.addEventListener('touchend', e => {
+  const diff = tx - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 44) goTo(current + (diff > 0 ? 1 : -1));
 });
 
-// ==============================
-//  DELETE
-// ==============================
+/* ── DELETE ───────────────────────────────────── */
 function deleteNote(id) {
   notes = notes.filter(n => n.id !== id);
-  saveToStorage();
-  if (currentIndex >= notes.length) {
-    currentIndex = Math.max(0, notes.length - 1);
-  }
-  renderAll();
+  save();
+  if (current >= notes.length) current = Math.max(0, notes.length - 1);
+  render();
 }
 
-// ==============================
-//  INIT
-// ==============================
-(function init() {
-  notes = loadFromStorage();
-  renderAll();
-})();
+/* ── UTILS ────────────────────────────────────── */
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+/* ── INIT ─────────────────────────────────────── */
+notes = load();
+render();
