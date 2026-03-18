@@ -48,3 +48,26 @@ body {
     cursor: pointer;
     margin-left: 12px;
 }
+
+
+
+
+
+
+
+
+#notification{
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #22c55e;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    transition: 0.4s;
+}
+
+#notification.show{
+    top: 20px;
+}

@@ -53,3 +53,31 @@ const toast = {
     }
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+const btn = document.getElementById("btn");
+const notification = document.getElementById("notification");
+
+let timer;
+
+btn.addEventListener("click", () => {
+
+    notification.classList.add("show");
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+        notification.classList.remove("show");
+    }, 2000);
+
+});
