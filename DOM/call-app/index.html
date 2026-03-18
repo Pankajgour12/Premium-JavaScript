@@ -1,17 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Notes-app</title>
 </head>
+
 <body>
     <div class="form-container">
         <h2>New call</h2>
-    </div>
-    
+        <form>
+            <label>Image URL</label>
+            <input required type="text" placeholder="https://example.com/photo.jpg">
 
-<script src="script.js"></script>
+            <label>Full Name</label>
+            <input required type="text" placeholder="Enter Full Name">
+
+            <label>Home Town</label>
+            <input required type="text" placeholder="Enter Home Town">
+
+            <label>Purpose</label>
+            <input required type="text" placeholder="e.g. Quick appointment">
+
+
+            <label>
+                Category
+            </label>
+            <label class="tag-checbox">
+                <input required type="radio" name="Category" value="emergency">
+                <span>Emergency</span>
+            </label>
+
+            <label class="tag-checbox">
+                <input required type="radio" name="Category" value="important">
+                <span>Important</span>
+            </label>
+
+             <label class="tag-checbox">
+                <input required type="radio" name="Category" value="no-rush">
+                <span>No Rush</span>
+            </label>
+
+          <button class="submit-btn">Crete Note</button>
+
+        </form>
+
+
+    </div>
+
+
+    <script src="script.js"></script>
 </body>
+
 </html>
