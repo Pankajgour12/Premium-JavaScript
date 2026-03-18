@@ -1,57 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Notes-app</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack Notes</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="form-container">
-        <h2>New call</h2>
-        <form>
-            <label>Image URL</label>
-            <input required type="text" placeholder="https://example.com/photo.jpg">
 
-            <label>Full Name</label>
-            <input required type="text" placeholder="Enter Full Name">
+<button id="addBtn">＋</button>
 
-            <label>Home Town</label>
-            <input required type="text" placeholder="Enter Home Town">
+<div class="formBox">
+<form id="form">
+<input id="image" placeholder="Image URL" required>
+<input id="name" placeholder="Full Name" required>
+<input id="town" placeholder="Home Town" required>
+<input id="purpose" placeholder="Purpose" required>
 
-            <label>Purpose</label>
-            <input required type="text" placeholder="e.g. Quick appointment">
+<div class="radio">
+<label><input type="radio" name="cat" value="emergency">Emergency</label>
+<label><input type="radio" name="cat" value="important">Important</label>
+<label><input type="radio" name="cat" value="no-rush">No Rush</label>
+</div>
 
+<button>Create</button>
+</form>
+</div>
 
-            <label>
-                Category
-            </label>
-            <label class="tag-checbox">
-                <input required type="radio" name="Category" value="emergency">
-                <span>Emergency</span>
-            </label>
+<div class="stackArea">
 
-            <label class="tag-checbox">
-                <input required type="radio" name="Category" value="important">
-                <span>Important</span>
-            </label>
+<button id="prev">⬅</button>
 
-             <label class="tag-checbox">
-                <input required type="radio" name="Category" value="no-rush">
-                <span>No Rush</span>
-            </label>
+<div id="stack"></div>
 
-          <button class="submit-btn">Crete Note</button>
+<button id="next">➡</button>
 
-        </form>
+</div>
 
-
-    </div>
-
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>

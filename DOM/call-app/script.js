@@ -1,90 +1,78 @@
-// new cards create karna hai , 
-//data local storage me save karna hai 
-// buttons ko handle karna hai 
-// filters ko handle karna hai 
+const addBtn = document.getElementById("addBtn");
+const formBox = document.querySelector(".formBox");
+const form = document.getElementById("form");
+const stack = document.getElementById("stack");
 
-let addNote = document.querySelector("#add-note");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
 
-let formContainer = document.querySelector(".form-container");
+let cards = [];
+let index = 0;
 
-let closeForm = document.querySelectorAll(".closeForm")
+addBtn.onclick = () => formBox.style.display = "block";
 
+form.addEventListener("submit", e=>{
+e.preventDefault();
 
-const form = document.querySelector("form");
+const data = {
+image: image.value,
+name: name.value,
+town: town.value,
+purpose: purpose.value,
+cat: document.querySelector('input[name="cat"]:checked')?.value
+};
 
-const imageInput = document.querySelector('input[placeholder="https://example.com/photo.jpg"]');
-const nameInput = document.querySelector('input[placeholder="Enter Full Name"]');
-const townInput = document.querySelector('input[placeholder="Enter Home Town"]');
-const purposeInput = document.querySelector('input[placeholder="e.g. Quick appointment"]');
-
-const categoryRadios = document.querySelectorAll('input[name="Category"]');
-
-const submitBtn = document.querySelector(".submit-btn");
-
- 
-//form close of open 
-
-addNote.addEventListener("click",()=>{
-    formContainer.style.display = 'initial'
-})
-addNote.addEventListener("click",()=>{
-    formContainer.style.display = 'none'
-})
-
-
-
-
-
-form.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-
-    const image = form.querySelectorAll("input")[0].value.trim();
-    const name = form.querySelectorAll("input")[1].value.trim();
-    const town = form.querySelectorAll("input")[2].value.trim();
-    const purpose = form.querySelectorAll("input")[3].value.trim();
-
-    const category = form.querySelector('input[name="Category"]:checked');
-
-    // validation start
-
-    if (!image || !name || !town || !purpose) {
-        alert("All fields are required");
-        return;
-    }
-
-    if (!image.startsWith("http")) {
-        alert("Invalid Image URL");
-        return;
-    }
-
-    if (name.length < 3) {
-        alert("Name must be at least 3 characters");
-        return;
-    }
-
-    if (purpose.length < 5) {
-        alert("Purpose too short");
-        return;
-    }
-
-    if (!category) {
-        alert("Select Category");
-        return;
-    }
-
-
-    
-    // success
-
-    console.log({
-        image,
-        name,
-        town,
-        purpose,
-        category: category.value
-    });
-
-    alert("Form Submitted Successfully");
-
-    form.reset();
+createCard(data);
+form.reset();
+formBox.style.display="none";
 });
+
+function createCard(data){
+
+const card = document.createElement("div");
+card.className="card";
+
+card.innerHTML=`
+<img src="${data.image}">
+<h2>${data.name}</h2>
+<p>${data.town}</p>
+<p>${data.purpose}</p>
+<small>${data.cat}</small>
+`;
+
+stack.appendChild(card);
+cards.push(card);
+
+updateStack();
+}
+
+function updateStack(){
+
+cards.forEach((card,i)=>{
+const offset = i - index;
+
+card.style.transform =
+`translateX(${offset*40}px)
+ translateY(${Math.abs(offset)*10}px)
+ scale(${1 - Math.abs(offset)*0.1})`;
+
+card.style.zIndex = 100 - Math.abs(offset);
+card.style.opacity = Math.abs(offset) > 3 ? 0 : 1;
+
+});
+
+}
+
+next.onclick = ()=>{
+if(index < cards.length-1){
+index++;
+updateStack();
+}
+}
+
+prev.onclick = ()=>{
+if(index > 0){
+index--;
+updateStack();
+}
+}
