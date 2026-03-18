@@ -1,42 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stack Notes</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Call Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<button id="addBtn">＋</button>
+  <!-- Background Grid -->
+  <div class="bg-grid"></div>
 
-<div class="formBox">
-<form id="form">
-<input id="image" placeholder="Image URL" required>
-<input id="name" placeholder="Full Name" required>
-<input id="town" placeholder="Home Town" required>
-<input id="purpose" placeholder="Purpose" required>
+  <!-- Main App -->
+  <div class="app">
 
-<div class="radio">
-<label><input type="radio" name="cat" value="emergency">Emergency</label>
-<label><input type="radio" name="cat" value="important">Important</label>
-<label><input type="radio" name="cat" value="no-rush">No Rush</label>
-</div>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <span class="logo-dot"></span>
+        <h1 class="logo-text">CallNotes</h1>
+      </div>
+      <div class="header-right">
+        <span class="card-count" id="card-count">0 notes</span>
+        <button class="add-btn" id="add-note" title="Add new note">
+          <span class="plus-icon">+</span>
+        </button>
+      </div>
+    </header>
 
-<button>Create</button>
-</form>
-</div>
+    <!-- Cards Area -->
+    <main class="main-area">
 
-<div class="stackArea">
+      <!-- Empty State -->
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">📋</div>
+        <p class="empty-title">No call notes yet</p>
+        <p class="empty-sub">Hit the <strong>+</strong> button to add your first one</p>
+      </div>
 
-<button id="prev">⬅</button>
+      <!-- Card Slider -->
+      <div class="slider-wrapper" id="slider-wrapper" style="display:none;">
+        <button class="nav-btn nav-left" id="nav-left">&#8592;</button>
+        <div class="cards-track" id="cards-track"></div>
+        <button class="nav-btn nav-right" id="nav-right">&#8594;</button>
+        <div class="slider-dots" id="slider-dots"></div>
+      </div>
 
-<div id="stack"></div>
+    </main>
+  </div>
 
-<button id="next">➡</button>
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
 
-</div>
+  <!-- Form Modal -->
+  <div class="form-modal" id="form-modal">
+    <div class="form-header">
+      <h2 class="form-title">New Call Note</h2>
+      <button class="close-btn" id="close-form">&#x2715;</button>
+    </div>
 
-<script src="script.js"></script>
+    <form id="note-form" novalidate>
+
+      <div class="form-group">
+        <label class="form-label">Profile Image URL</label>
+        <input class="form-input" type="text" id="input-image" placeholder="https://example.com/photo.jpg" />
+        <span class="error-msg" id="err-image"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" id="input-name" placeholder="Enter full name" />
+        <span class="error-msg" id="err-name"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Home Town</label>
+        <input class="form-input" type="text" id="input-town" placeholder="Enter home town" />
+        <span class="error-msg" id="err-town"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Purpose</label>
+        <input class="form-input" type="text" id="input-purpose" placeholder="e.g. Quick appointment" />
+        <span class="error-msg" id="err-purpose"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Category</label>
+        <div class="radio-group">
+          <label class="radio-option emergency">
+            <input type="radio" name="category" value="emergency" />
+            <span class="radio-pill">🚨 Emergency</span>
+          </label>
+          <label class="radio-option important">
+            <input type="radio" name="category" value="important" />
+            <span class="radio-pill">⚡ Important</span>
+          </label>
+          <label class="radio-option no-rush">
+            <input type="radio" name="category" value="no-rush" />
+            <span class="radio-pill">🍃 No Rush</span>
+          </label>
+        </div>
+        <span class="error-msg" id="err-category"></span>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>Save Note</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+    </form>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
