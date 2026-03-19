@@ -24,12 +24,12 @@ const scope = `
 
 
 
-function abcd(){
+/* function abcd(){
     let a = 10;
      function defg(){
         console.log(a);
      }
-}
+} */
  
 
 
@@ -65,3 +65,42 @@ function abcd() {
 // variables ka ek backlink bnaya jaate hai  
 // aur uska naam hote hai 
 //!  [[environment]]  ,
+
+
+
+
+
+
+
+
+
+
+
+ let Counter =`
+  
+function countForMe(){
+    let c =0;
+    return function(){
+        c++;
+        console.log(c);
+    }
+}
+
+ let fnc = countForMe();
+
+fnc() // output 1
+fnc() // output 2
+fnc() // output 3
+
+
+
+ let fnc2 = countForMe()
+fnc2() // output 1
+fnc2() // output 2
+fnc2() // output 3
+fnc2() // output 4
+fnc2() // output 5
+fnc2() // output 6
+fnc2() // output 7
+fnc2() // output 8
+ `
