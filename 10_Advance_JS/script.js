@@ -1,3 +1,4 @@
+const scope = `
  //* scope - function scope, global scope and block scope 
 
 
@@ -7,3 +8,5 @@
  //!  global scope - poore code mein kahi bhi use ho sakti he 
 
  //! block scope - { } - curly braces main hi use ho sakti he
+ 
+ `
