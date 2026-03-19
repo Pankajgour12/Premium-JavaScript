@@ -57,3 +57,11 @@ function abcd() {
 
 
 `
+
+//? how variables are preserved 
+// ye sach hai fnc ke katam hone pe apka 
+// fnc and uske variables khtm ho jaate hai ,
+// par jab bhi Closures banta hai to aapka fnc aur uske
+// variables ka ek backlink bnaya jaate hai  
+// aur uska naam hote hai 
+//!  [[environment]]  ,
