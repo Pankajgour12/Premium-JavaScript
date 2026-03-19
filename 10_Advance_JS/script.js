@@ -35,3 +35,25 @@ function abcd(){
 
 
 //! dynamic scoping -> kaha se call kr rhe ho uspe depend karega ki kya value milegi 
+
+
+
+
+
+
+const closure = `
+//? closures hote hai functions jo ki kisi parent fnc ke andar ho aur andar waala function return ho raho 
+//? ho , and returning func youse kare , parent function ka koi variable 
+
+
+function abcd() {
+    let a = 10;
+
+    return function () {
+    console.log(a);
+    }
+}
+
+
+
+`
