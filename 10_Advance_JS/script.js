@@ -104,3 +104,26 @@ fnc2() // output 6
 fnc2() // output 7
 fnc2() // output 8
  `
+
+
+ function clickLimiter(){
+    let click =0 ;
+     return function(){
+        if(click<5){
+            click++
+            console.log(`click ${click} Times`);
+        }else{
+            console.error("click limit are done")
+        }
+     }
+ }
+
+
+let fnc =  clickLimiter()
+fnc()
+fnc()
+fnc()
+fnc()
+fnc()
+
+fnc()
