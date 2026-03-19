@@ -10,3 +10,10 @@ const scope = `
  //! block scope - { } - curly braces main hi use ho sakti he
  
  `
+
+
+ //?  Execution Context
+ // js sabse pehle jaise hi aapka function dekhta hai sabse pahle js banaata hai execution context,
+ //  ye ek process hai jo ki do different phases mein chalta hai, 
+ // memory phase and doosre ka naam hai execution phase 
+ //  
