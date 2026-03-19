@@ -17,3 +17,7 @@ const scope = `
  //  ye ek process hai jo ki do different phases mein chalta hai, 
  // memory phase and doosre ka naam hai execution phase 
  //  
+
+
+
+ 
