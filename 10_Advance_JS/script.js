@@ -19,5 +19,19 @@ const scope = `
  //  
 
 
+//? js- lexical scoping -> ki aap kaha par physically 
+// available ho ye poori tareeke se depend karta hai ki aap kya access kr paoge 
 
+
+
+function abcd(){
+    let a = 10;
+     function defg(){
+        console.log(a);
+     }
+}
  
+
+
+
+//! dynamic scoping -> kaha se call kr rhe ho uspe depend karega ki kya value milegi 
