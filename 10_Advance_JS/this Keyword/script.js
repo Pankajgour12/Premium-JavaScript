@@ -97,7 +97,3 @@ arrow function inside es5 method - object
 event hander - element 
 
 class - blank object */
-
-
-
-
