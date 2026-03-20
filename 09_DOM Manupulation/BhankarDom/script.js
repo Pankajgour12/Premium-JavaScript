@@ -6,13 +6,13 @@
 
 
 
-let a = document.getElementsByTagName('div')
+/* let a = document.getElementsByTagName('div')
 console.log(a);
 
 console.log(document.getElementById('heading'))
 
 console.log(document.getElementsByClassName('hi'))
-
+ */
 
 // let a = document.querySelector('.hi')
 // console.log(a)
