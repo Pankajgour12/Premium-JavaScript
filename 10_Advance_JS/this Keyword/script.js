@@ -67,11 +67,12 @@ class Person{
 
 }
 
-
+/* 
  let val = new Person("pankaj",23);
 
  console.log(val.name)
  console.log(val.age);
+ */
 
 
 
@@ -80,8 +81,7 @@ class Person{
 
 
 
-
-
+/* 
  this ki value 
  ----------------
 
@@ -96,4 +96,8 @@ arrow function inside es5 method - object
 
 event hander - element 
 
-class - blank object
+class - blank object */
+
+
+
+
