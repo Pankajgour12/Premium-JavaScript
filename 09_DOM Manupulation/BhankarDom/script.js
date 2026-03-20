@@ -1,17 +1,17 @@
-/*
 
-1. DOM ✅
-2. Selection ✅
-3. Manupating the html ✅
 
-*/
+// 1. DOM ✅
+// 2. Selection ✅
+// 3. Manupulation  the html ✅
 
-// let a = document.getElementsByTagName('div')
-// console.log(a);
 
-// console.log(document.getElementById('heading'))
 
-// console.log(document.getElementsByClassName('hi'))
+let a = document.getElementsByTagName('div')
+console.log(a);
+
+console.log(document.getElementById('heading'))
+
+console.log(document.getElementsByClassName('hi'))
 
 
 // let a = document.querySelector('.hi')
