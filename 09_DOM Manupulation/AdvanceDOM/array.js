@@ -59,7 +59,7 @@ for( let i= 0 ; i< actor.length ; i++){
 // forEach -> kuch bhi return nahi karta hai 
 
 
-//! filter 
+//! filter ->  filter returns elements that satisfy condition
 
 /* 
     const myNums = [ 1,2,3,4,5,6,7,8,9,10]
@@ -160,8 +160,8 @@ console.log( newBook);
 
 
 
-//! map 
-
+//! map  -> map creates a new array by transforming each element
+/* 
 const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
@@ -171,6 +171,24 @@ const newNums = myNums
      map((num) => num * 10)
 
 console.log(newNums);
+
+ */
+
+//! reduce  -> reduce converts array → single value
+
+const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+const total = myNums.reduce((acc,currVal)=>{
+    console.log(`acc ${acc}  and currentVal ${currVal}`);
+    return acc + currVal;
+},0)
+
+console.log(total);
+
+
+
+
+
 
 
 
