@@ -28,38 +28,38 @@ for( let i= 0 ; i< actor.length ; i++){
 
 } */
 
-   /*  actor.forEach((actor)=>{
-       
-      actor.payment =  actor.payment-10
-        
-    })
-    console.log(actor);
- */
+/*  actor.forEach((actor)=>{
+    
+   actor.payment =  actor.payment-10
+     
+ })
+ console.log(actor);
+*/
 
 
 
-  /*   for (const item of actor) {
-      
-    //   console.log(item);
-    //   console.log(item.payment-10);
-      item.payment = item.payment-10;
-      item.name = item.name.toUpperCase();
-    }
+/*   for (const item of actor) {
+    
+  //   console.log(item);
+  //   console.log(item.payment-10);
+    item.payment = item.payment-10;
+    item.name = item.name.toUpperCase();
+  }
 
-    actor.forEach((item)=>{
-        console.log(item.name, item.payment);
-    })  
-    // console.log(actor);
-     */
-
-
+  actor.forEach((item)=>{
+      console.log(item.name, item.payment);
+  })  
+  // console.log(actor);
+   */
 
 
 
-    // forEach -> kuch bhi return nahi karta hai 
 
 
-    //! filter 
+// forEach -> kuch bhi return nahi karta hai 
+
+
+//! filter 
 
 /* 
     const myNums = [ 1,2,3,4,5,6,7,8,9,10]
@@ -71,7 +71,7 @@ for( let i= 0 ; i< actor.length ; i++){
 
 
 
-
+/* 
 const books = [
   {
     title: "Data Structures Basics",
@@ -143,7 +143,7 @@ const books = [
     edition: 2021,
     publisherYear: 2021
   }
-];
+]; */
 
 
 
@@ -151,6 +151,29 @@ const books = [
 
  console.log( newBook);
   */
- const newBook = books.filter((book)=> book.edition >= 2020 && book.subject === 'Computer Science')
+/* const newBook = books.filter((book)=> book.edition >= 2020 && book.subject === 'Computer Science')
 
- console.log( newBook);
+console.log( newBook);
+*/
+
+
+
+
+
+//! map 
+
+const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+
+const newNums = myNums
+    .filter((num) => num > 5).
+     map((num) => num * 10)
+
+console.log(newNums);
+
+
+
+
+
+
