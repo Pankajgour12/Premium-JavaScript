@@ -21,10 +21,19 @@ const actor = [
 
 ]
 
-
+/* 
 for( let i= 0 ; i< actor.length ; i++){
     console.log(actor[i].name);
-    console.log(actor[i].payment);
+    console.log(actor[i].payment-10);
 
-}
+} */
+
+    actor.forEach((actor)=>{
+       
+      actor.payment =  actor.payment-10
+        
+    })
+    console.log(actor);
+
+
 
