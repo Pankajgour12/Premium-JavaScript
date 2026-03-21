@@ -176,17 +176,46 @@ console.log(newNums);
 
 //! reduce  -> reduce converts array → single value
 
-const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+/*  const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let num= myNums.reduce((acc,curr)=> {
+    // console.log(`acc ${acc}  cuur ${curr}`);
+   return acc > curr ? acc : curr
+}) */
 
+// console.log( num);
+/*
 const total = myNums.reduce((acc,currVal)=>{
     console.log(`acc ${acc}  and currentVal ${currVal}`);
     return acc + currVal;
 },0)
 
 console.log(total);
+ */
+
+const users = [
+ {name:"A", age:20},
+ {name:"B", age:20},
+ {name:"C", age:30}
+]
+
+const grouped = users.reduce((acc, user)=>{
+   acc[user.age] = acc[user.age] || []
+   acc[user.age].push(user)
+   return acc
+}, {})
+
+// console.log(grouped);
 
 
 
+const arr = ["a","b","a","c",'b',"a"]
+
+const freq = arr.reduce((acc, curr)=>{
+   acc[curr] = (acc[curr] || 0) + 1
+   console.log(` ${acc[curr]} and currentVal ${curr}`);
+   
+   return acc
+}, {})
 
 
 
