@@ -2,11 +2,11 @@ function CreateUser(name, age, color) {
   this.name = name;
   this.age = age;
   this.color = color;
-  this.company ="Google";
+  
 
-  this.write = function (text) {
+  CreateUser.prototype.write = function (text) {
     let div = document.createElement("div");
-
+   this.company = "Amazon";
     let h1 = document.createElement("h1");
     let p = document.createElement("p");
 
@@ -25,7 +25,8 @@ function CreateUser(name, age, color) {
   };
 }
 
-let user1 = new CreateUser("Pankaj", 24, "white", "google");
-let user2 = new CreateUser("Subham", 16, "orange", "meta");
+
+let user1 = new CreateUser("Pankaj", 24, "#de87ed" );
+let user2 = new CreateUser("Subham", 16, "yellow");
 
 ;
