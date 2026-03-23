@@ -1,36 +1,31 @@
-class CreateUser {
-  constructor(name, age, color) {
-    this.name = name;
-    this.age = age;
-    this.color = color;
-  }
 
-  write(text) {
-    let div = document.createElement("div");
-
-    let h1 = document.createElement("h1");
-    let p = document.createElement("p");
-
-    h1.textContent = `${text} ${this.name}`;
-    h1.style.color = this.color;
-    h1.style.textAlign = "center";
-
-    p.textContent = `Age: ${this.age} || Company: ${this.company}`;
-    p.style.color = "pink";
-    p.style.textAlign = "center";
-
-    div.appendChild(h1);
-    div.appendChild(p);
-
-    document.body.appendChild(div);
-  }
-
-  erase() {
-    if (this.div) {
-      this.div.remove();   // ⭐ sirf uska hi block remove
+class User {
+    constructor(name, email, age){
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.role = "user"
     }
-  }
+
+    write(text){
+        let h1 = document.createElement("h1");
+        h1.innerText = `${this.name} : ${text}`
+        h1.style.color = "red";
+        document.body.append(h1)
+    }
 }
 
-let user1 = new CreateUser("Pankaj", 24, "#de87ed");
-let user2 = new CreateUser("Lotus", 22, "#e39b53");
+class Admin extends User {
+    constructor(name, email, age){
+        super(name, email, age)
+        this.role = "admin"
+    }
+    remove(){
+        document.querySelectorAll("h1").forEach(el => el.remove())
+    }
+}
+
+let user1 = new User("Pankaj","pnlka@gmail.com",18)
+
+let user2 = new User("Lotus","pnlka@gmail.com",24)
+let admin = new Admin("admin","pnlka@gmail.com",24)
