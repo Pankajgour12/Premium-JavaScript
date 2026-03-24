@@ -1,5 +1,5 @@
-
-class User {
+// classes
+/* class User {
     constructor(name, email, age){
         this.name = name;
         this.email = email;
@@ -29,3 +29,14 @@ let user1 = new User("Pankaj","pnlka@gmail.com",18)
 
 let user2 = new User("Lotus","pnlka@gmail.com",24)
 let admin = new Admin("admin","pnlka@gmail.com",24)
+ */
+
+
+
+
+
+
+
+
+
+
