@@ -101,5 +101,18 @@ let Bank = (function (){
 })()
 
 
-Bank.checkBalance()
+// Bank.checkBalance()
 
+
+
+
+//! Factory Function Pattern 
+
+//? ek function banate ho jo objects create karta hai (factory = object banane ki machine)
+
+//?  Factory Function Pattern ek aisa design pattern hai jisme hum ek simple function likhte hai jo nae objects banakr return karta hai , bina class ya new keyword use kiye.
+
+
+//? Is pattern ka mian idea hai -> object creation ko ek function ke through control karna 
+
+//? Har baar jab tum factory function call karte ho, tumhe ek naya object milta hai jisme apne methods aur ( agar chaho to ) private data ho sakta hai 
