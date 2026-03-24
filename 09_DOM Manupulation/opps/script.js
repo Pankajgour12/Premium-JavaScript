@@ -59,4 +59,15 @@ abcd();
  */
 
 
+//! module pattern in js 
+
+
+
+//? Module Pattern ek design pattern hai jisme hum apna code ek self executing function (IIFE) ke andar likhte hain , raki variables aur functions private rahen. 
+
+//? Iske andar se hum sirf wahi chheezein return karte hain jo bahar use karni hain. 
+
+// Is pattern ka main fayda hai data hiding (Encapsulation) aur clean structure. taaki code secure, reusable aur manageable ban sake. 
+
+
 
