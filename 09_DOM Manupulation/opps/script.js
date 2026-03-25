@@ -138,5 +138,89 @@ function createUser(name, role) {
 const user1 = createUser("Pankaj", "Developer");
 const user2 = createUser("Rohit", "Designer");
 
-user1.introduce();
+/* user1.introduce();
 user2.introduce();
+ */
+
+
+
+
+
+
+
+
+function TaskFactory(title){
+
+    let completed = false;   // 🔒 private
+
+    return {
+
+        title,
+
+        toggle(){
+            completed = !completed;
+        },
+
+        isCompleted(){
+            return completed;
+        }
+
+    };
+
+}
+
+function TaskManager(){
+
+    let tasks = [];   // 🔒 private state
+
+    function add(title){
+        const task = TaskFactory(title);
+        tasks.push(task);
+        render();
+    }
+
+    function remove(index){
+        tasks.splice(index,1);
+        render();
+    }
+
+    function toggle(index){
+        tasks[index].toggle();
+        render();
+    }
+
+    function render(){
+
+        const list = document.getElementById("taskList");
+        list.innerHTML = "";
+
+        tasks.forEach((task,i)=>{
+
+            const li = document.createElement("li");
+
+            li.innerHTML = `
+            <span style="text-decoration:${task.isCompleted() ? "line-through":"none"}">
+            ${task.title}
+            </span>
+
+            <div>
+            <button onclick="app.toggle(${i})">✔</button>
+            <button onclick="app.remove(${i})">❌</button>
+            </div>
+            `;
+
+            list.appendChild(li);
+
+        });
+    }
+
+    return { add, remove, toggle };
+
+}
+
+const app = TaskManager();
+
+document.getElementById("addTask").onclick = () => {
+    const val = taskInput.value;
+    if(val) app.add(val);
+};
