@@ -238,7 +238,7 @@ document.getElementById("addTask").onclick = () => {
 
 
 
-
+/* 
 const QuizApp = (function(){
 
     let questions = [
@@ -300,3 +300,67 @@ const QuizApp = (function(){
 
 QuizApp.init();
 nextBtn.onclick = QuizApp.next;
+
+ */
+
+
+
+
+
+
+
+
+const PasswordAnalyzer = (function(){
+
+    function calculateStrength(pass){
+
+        let score = 0;
+
+        if(pass.length >= 8) score++;
+        if(/[A-Z]/.test(pass)) score++;
+        if(/[0-9]/.test(pass)) score++;
+        if(/[!@#$%^&*]/.test(pass)) score++;
+
+        return score;
+    }
+
+    function updateUI(score){
+
+        const bar = document.getElementById("bar");
+        const msg = document.getElementById("msg");
+
+        const percent = (score / 4) * 100;
+        bar.style.width = percent + "%";
+
+        if(score <= 1){
+            bar.style.background = "red";
+            msg.innerText = "Weak";
+        }
+        else if(score === 2){
+            bar.style.background = "orange";
+            msg.innerText = "Medium";
+        }
+        else if(score === 3){
+            bar.style.background = "yellow";
+            msg.innerText = "Strong";
+        }
+        else{
+            bar.style.background = "green";
+            msg.innerText = "Very Strong";
+        }
+    }
+
+    function init(){
+        const input = document.getElementById("pass");
+
+        input.addEventListener("input", () => {
+            const score = calculateStrength(input.value);
+            updateUI(score);
+        });
+    }
+
+    return { init };
+
+})();
+
+PasswordAnalyzer.init();
