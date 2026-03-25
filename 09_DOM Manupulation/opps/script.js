@@ -116,3 +116,27 @@ let Bank = (function (){
 //? Is pattern ka mian idea hai -> object creation ko ek function ke through control karna 
 
 //? Har baar jab tum factory function call karte ho, tumhe ek naya object milta hai jisme apne methods aur ( agar chaho to ) private data ho sakta hai 
+
+
+
+/* The factory function pattern is a design pattern where a function is used to create and return object instances. It helps in abstracting object creation logic, supports encapsulation through closures, and promotes composition-based architecture instead of classical inheritance */
+
+
+function createUser(name, role) {
+
+    return {
+        name: name,
+        role: role,
+
+        introduce() {
+            console.log(`Hi, I am ${this.name} and I am a ${this.role}`);
+        }
+    };
+
+}
+
+const user1 = createUser("Pankaj", "Developer");
+const user2 = createUser("Rohit", "Designer");
+
+user1.introduce();
+user2.introduce();
