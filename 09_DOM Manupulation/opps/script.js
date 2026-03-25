@@ -149,7 +149,8 @@ user2.introduce();
 
 
 
-function TaskFactory(title){
+
+/* function TaskFactory(title){
 
     let completed = false;   // 🔒 private
 
@@ -223,4 +224,79 @@ const app = TaskManager();
 document.getElementById("addTask").onclick = () => {
     const val = taskInput.value;
     if(val) app.add(val);
-};
+}; */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const QuizApp = (function(){
+
+    let questions = [
+        {q:"JS is ?", opt:["Language","Framework","Library"], ans:0, weight:5},
+        {q:"HTML stands for?", opt:["Markup","Programming","Database"], ans:0, weight:3},
+        {q:"CSS used for?", opt:["Styling","Logic","Server"], ans:0, weight:2}
+    ];
+
+    let index = 0;
+    let score = 0;
+    let selected = null;
+
+    function render(){
+
+        if(index >= questions.length){
+            showResult();
+            return;
+        }
+
+        const q = questions[index];
+
+        questionBox.innerText = q.q;
+        options.innerHTML = "";
+
+        q.opt.forEach((o,i)=>{
+            const div = document.createElement("div");
+            div.className = "option";
+            div.innerText = o;
+            div.onclick = ()=> selected = i;
+            options.appendChild(div);
+        });
+
+        progress.innerText = `Q ${index+1}/${questions.length}`;
+    }
+
+    function next(){
+
+        const q = questions[index];
+
+        if(selected === q.ans){
+            score += q.weight;
+        }
+
+        index++;
+        selected = null;
+
+        render();
+    }
+
+    function showResult(){
+        questionBox.innerText = "Quiz Completed";
+        options.innerHTML = "";
+        result.innerText = `Score: ${score}`;
+    }
+
+    return { init: render, next };
+
+})();
+
+QuizApp.init();
+nextBtn.onclick = QuizApp.next;
