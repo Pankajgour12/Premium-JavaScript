@@ -364,3 +364,4 @@ const PasswordAnalyzer = (function(){
 })();
 
 PasswordAnalyzer.init();
+

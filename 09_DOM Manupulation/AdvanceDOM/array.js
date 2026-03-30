@@ -216,6 +216,24 @@ const freq = arr.reduce((acc, curr)=>{
    
    return acc
 }, {})
+// console.log(freq);
+
+
+const str = "hello world"
+
+const charFreq = str.split("").reduce((acc, char)=>{
+    acc[char] = (acc[char] || 0) + 1
+    return acc
+}, {})
+
+ console.log(charFreq);
+
+
+
+
+
+
+
 
 
 
