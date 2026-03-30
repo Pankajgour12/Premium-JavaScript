@@ -208,18 +208,18 @@ const grouped = users.reduce((acc, user)=>{
 
 
 
-const arr = ["a","b","a","c",'b',"a"]
+// const arr = ["a","b","a","c",'b',"a"]
 
-const freq = arr.reduce((acc, curr)=>{
+/* const freq = arr.reduce((acc, curr)=>{
    acc[curr] = (acc[curr] || 0) + 1
    console.log(` ${acc[curr]} and currentVal ${curr}`);
    
    return acc
-}, {})
+}, {}) */
 // console.log(freq);
 
 
-const str = "hello world"
+/* const str = "hello world"
 
 const charFreq = str.split("").reduce((acc, char)=>{
     acc[char] = (acc[char] || 0) + 1
@@ -227,10 +227,13 @@ const charFreq = str.split("").reduce((acc, char)=>{
 }, {})
 
  console.log(charFreq);
+ */
 
 
+ const arr = [1,2,45,21,20,122,1,2,4,6,75,8,9,10]
 
 
+  arr.map(num => num * 2).filter(num => num > 20).forEach(num => console.log(num))
 
 
 
