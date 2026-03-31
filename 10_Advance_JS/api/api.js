@@ -1,38 +1,51 @@
-
 const container = document.getElementById("container");
 
-// API call
-fetch("https://api.escuelajs.co/api/v1/categories")
-  .then((res) => res.json())
-  .then((data) => {
+// async function
+async function fetchProducts() {
+  try {
+    // API call
+    const res = await fetch("https://fakestoreapi.com/products");
+ console.log(res.data);
+    // JSON convert
+    const data = await res.json();
 
+    // loop
     data.forEach((item) => {
 
       const card = document.createElement("div");
 
       card.className =
-        "group w-80 rounded-2xl overflow-hidden bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl hover:scale-105 transition duration-500";
+        "w-80 bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition duration-300";
 
       card.innerHTML = `
-        <div class="h-48 overflow-hidden">
-          <img src="${item.image}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500"/>
-        </div>
+        <img src="${item.image}" class="w-full h-48 object-contain p-4 bg-white"/>
 
-        <div class="p-4 text-white">
-          <h1 class="text-xl font-bold">${item.name}</h1>
+        <div class="p-4">
+          <h1 class="text-lg font-bold text-gray-800 line-clamp-1">
+            ${item.title}
+          </h1>
 
-          <p class="text-sm text-gray-300 mt-2">
-            This is a dynamic card fetched from API.
+          <p class="text-sm text-gray-600 mt-2 line-clamp-2">
+            ${item.description}
           </p>
 
-          <button class="mt-4 w-full py-2 rounded-lg bg-gradient-to-r from-amber-400 to-orange-500 text-black font-semibold hover:scale-105 transition">
-            Explore
-          </button>
+          <div class="flex justify-between items-center mt-4">
+            <span class="text-xl font-bold text-green-600">$${item.price}</span>
+
+            <button class="px-3 py-1 bg-black text-white rounded hover:bg-gray-800">
+              Buy
+            </button>
+          </div>
         </div>
       `;
 
       container.appendChild(card);
     });
 
-  })
-  .catch((err) => console.log("Error:", err));
+  } catch (error) {
+    console.log("Error:", error);
+  }
+}
+
+// function call
+fetchProducts();
