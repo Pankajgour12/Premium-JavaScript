@@ -23,7 +23,7 @@ async function fetchProducts() {
           </h1>
 
           <p class="text-sm text-gray-600 mt-2">
-            ${item.description.substring(0, 80)}...
+            ${item.description.substring(0, 20)}...
           </p>
 
           <div class="flex justify-between items-center mt-4">
