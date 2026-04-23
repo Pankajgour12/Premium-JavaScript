@@ -112,8 +112,8 @@ inp.addEventListener("input", ()=>{
     renderUsers(filtered);
 });
 
- */
-/* const txt = document.querySelector(".txt")
+
+ const txt = document.querySelector(".txt")
 const count = document.querySelector(".count")
 
 txt.addEventListener("input", ()=>{
@@ -380,7 +380,7 @@ cards.forEach(icon => {
     }
 
     board.appendChild(card)
-}) */
+}) 
 
 
     const habitData = [
