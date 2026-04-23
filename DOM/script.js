@@ -1,4 +1,4 @@
-/* let btn = document.querySelector("#showBtn")
+let btn = document.querySelector("#showBtn")
 let banner = document.querySelector("#banner")
 
 
@@ -12,7 +12,7 @@ btn.addEventListener('click',()=>{
 
 
 })
- */
+ 
 
 
 
