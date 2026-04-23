@@ -322,11 +322,10 @@ inp.addEventListener("input", ()=>{
     }
 
 })
- */
+ 
 
 
 
-/* 
 
 
 const icons = ["🍎","🍌","🍒","🍇","🍉","🥝","🍍","🍓"]
