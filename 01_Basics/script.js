@@ -2,7 +2,7 @@
 //? JavaScript is a programming language that allows you to implement complex features on web pages. It is a versatile language that can be used for both client-side and server-side development. JavaScript is commonly used to create interactive effects within web browsers, such as form validation, dynamic content updates, and animations. It is an essential part of modern web development and is supported by all major web browsers.
 
 
-//! JavaScript Syntax
+// JavaScript Syntax
 //? JavaScript syntax is the set of rules that define how JavaScript code 
 //? should be written and structured. It includes rules for writing statements,
 //?  declaring variables, defining functions, and using operators.
