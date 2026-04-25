@@ -2,6 +2,7 @@
 // let result = age >= 18 ? "Eligible for booking" : "Not eligible for booking";
 // console.log(result);
 
+
 // let username = "asgsdg";
 // let password = "asdgsdgs";
 // const result = (username && password) ? ("login successfull") : ("username & password are required!")
