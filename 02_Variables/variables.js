@@ -7,7 +7,7 @@
 ye hamara
 multiple line
 comment hai
-*/
+*/--->
 
 // let age;
 // age = 24
